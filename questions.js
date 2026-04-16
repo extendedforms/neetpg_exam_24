@@ -2370,7 +2370,7 @@ window.questions = [
   },
   {
     id: 167,
-    image: "images/IMG_2574.jpeg",
+    image: "images/IMG_2600.jpeg",
     question:
       "A patient with bone pain undergoes X-ray evaluation, which shows the lesion seen in the image labeled brown tumor. This finding is most commonly associated with which of the following conditions?",
     options: [
