@@ -1,3 +1,5 @@
+Use this complete style.css file. The main fix is that the palette now has its own internal scroll area and a stable grid, so the numbers will appear in proper order instead of looking broken.
+
 /* =========================
    GLOBAL
 ========================= */
@@ -168,7 +170,7 @@ body.exam-page{
   background:var(--card);
   border:1px solid var(--line);
   border-radius:8px;
-  padding:18px;
+  padding:14px;
 }
 
 .palette{
@@ -181,7 +183,7 @@ body.exam-page{
   position:sticky;
   top:12px;
   max-height:calc(100vh - 90px);
-  overflow:hidden;
+  overflow:hidden; /* important */
   display:flex;
   flex-direction:column;
 }
@@ -194,26 +196,24 @@ body.exam-page{
 
 /* Question heading / text */
 .qhead h2{
-  margin:0 0 12px;
-  font-size:30px;
-  line-height:1.3;
-  font-weight:800;
+  margin:0 0 8px;
+  font-size:18px;
 }
 
 .qtext{
   background:#f2f5f9;
   border:1px solid var(--line);
-  padding:18px;
-  border-radius:10px;
-  font-size:31px;
-  line-height:1.65;
+  padding:10px;
+  border-radius:6px;
+  font-size:14px;
+  line-height:1.4;
   white-space:pre-wrap;
   word-break:break-word;
 }
 
 /* Question image */
 #qImgWrap{
-  margin-top:16px;
+  margin-top:12px;
 }
 
 #qImgWrap img{
@@ -228,21 +228,19 @@ body.exam-page{
 
 /* Options */
 .opts{
-  margin-top:16px;
+  margin-top:10px;
 }
 
 .opts label{
   display:flex;
-  gap:14px;
+  gap:10px;
   align-items:flex-start;
-  padding:18px;
+  padding:10px;
   border:1px solid var(--line);
-  border-radius:10px;
-  margin-bottom:14px;
+  border-radius:6px;
+  margin-bottom:10px;
   background:#fff;
   cursor:pointer;
-  font-size:25px;
-  line-height:1.5;
 }
 
 .opts label:hover{
@@ -251,9 +249,8 @@ body.exam-page{
 }
 
 .opts input[type="radio"]{
-  margin-top:6px;
+  margin-top:3px;
   flex:0 0 auto;
-  transform:scale(1.5);
 }
 
 /* Controls row */
@@ -261,27 +258,26 @@ body.exam-page{
   display:flex;
   flex-wrap:wrap;
   gap:10px;
-  margin-top:16px;
+  margin-top:10px;
 }
 
 .submitRow{
-  margin-top:14px;
+  margin-top:12px;
 }
 
 /* Buttons */
 .btn{
   width:auto;
-  padding:12px 18px;
-  border-radius:8px;
+  padding:10px 14px;
+  border-radius:6px;
   border:none;
   cursor:pointer;
   font-weight:700;
-  font-size:16px;
 }
 
 .btn.small{
-  padding:10px 12px;
-  font-size:14px;
+  padding:8px 10px;
+  font-size:13px;
 }
 
 .btn.navy{
@@ -461,18 +457,6 @@ body.exam-page{
   .pal{
     grid-template-columns:repeat(3, minmax(48px, 1fr));
   }
-
-  .qhead h2{
-    font-size:26px;
-  }
-
-  .qtext{
-    font-size:27px;
-  }
-
-  .opts label{
-    font-size:22px;
-  }
 }
 
 @media (max-width: 900px){
@@ -492,20 +476,6 @@ body.exam-page{
     max-height:none;
     overflow:visible;
     grid-template-columns:repeat(5, minmax(48px, 1fr));
-  }
-
-  .qhead h2{
-    font-size:24px;
-  }
-
-  .qtext{
-    font-size:24px;
-    line-height:1.6;
-  }
-
-  .opts label{
-    font-size:21px;
-    line-height:1.5;
   }
 }
 
@@ -550,27 +520,6 @@ body.exam-page{
     font-size:12px;
   }
 
-  .main{
-    padding:14px;
-  }
-
-  .qhead h2{
-    font-size:22px;
-    line-height:1.3;
-  }
-
-  .qtext{
-    font-size:21px;
-    line-height:1.65;
-    padding:16px;
-  }
-
-  .opts label{
-    font-size:19px;
-    line-height:1.55;
-    padding:16px;
-  }
-
   .pal{
     grid-template-columns:repeat(4, minmax(48px, 1fr));
   }
@@ -581,6 +530,15 @@ body.exam-page{
 
   .btn{
     padding:10px 12px;
-    font-size:15px;
   }
 }
+
+The important palette fixes are:
+	•	.palette { overflow:hidden; display:flex; flex-direction:column; }
+	•	.pal { flex:1 1 auto; overflow-y:auto; grid-template-columns:repeat(4, minmax(48px, 1fr)); }
+
+That keeps the question buttons in a proper ordered grid.
+
+Your current page showing 1, 2, 7, 8, 13, 14 happened because the palette area was scrolling strangely inside a sticky box. This file fixes that.
+
+If the palette still looks odd after replacing the CSS, the next thing to check is your JavaScript that creates the palette buttons.
